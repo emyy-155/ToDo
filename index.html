@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type"
+	content="text/html; charset=utf-8"/>
+		<title>App3</title>
+		<link rel="manifest" href="manifest.json">
+			<script>
+		function einfuegenAufgabe() {
+			var neueAufgabe = document.createElement("div");
+			neueAufgabe.innerHTML = document.getElementById("Feld").value;
+			neueAufgabe.onclick = entfernenAufgabe;
+			document.getElementById("Liste").appendChild(neueAufgabe);
+		}
+		function entfernenAufgabe() {
+			document.getElementById("Liste").removeChild(this);
+			}
+		if ("serviceWorker" in navigator) {
+		navigator.serviceWorker.register("sw.js")
+		.then(() => console.log("Service Worker registriert"))
+		.catch((err) => console.error("Fehler beim Registrieren des Service Workers:", err));
+		}
+			</script>
+</head>
+<body>
+	<p>Aufgaben für Sonderausstellungen</p>
+	<br/>
+	<input type="text" id="Feld" value="Aufgabe eintippen"/>
+	<br/>
+	<input type="button" value="Einfügen" onclick="einfuegenAufgabe();"/>
+	<br/>
+	<div id= "Liste"></div>
+</body>
+</html>
